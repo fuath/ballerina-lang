@@ -33,11 +33,11 @@ The following are the test parameters.
 | --- | --- | --- |
 | Scenario Name | The name of the test scenario. | Refer to the above table. |
 | Heap Size | The amount of memory allocated to the application | 2G |
-| Concurrent Users | The number of users accessing the application at the same time. | 50, 150, 500 |
-| Message Size (Bytes) | The request payload size in Bytes. | 50, 1024 |
+| Concurrent Users | The number of users accessing the application at the same time. | 100 |
+| Message Size (Bytes) | The request payload size in Bytes. | 50 |
 | Back-end Delay (ms) | The delay added by the back-end service. | 0 |
 
-The duration of each test is **900 seconds**. The warm-up period is **300 seconds**.
+The duration of each test is **120 seconds**. The warm-up period is **30 seconds**.
 The measurement results are collected after the warm-up period.
 
 A [**c5.xlarge** Amazon EC2 instance](https://aws.amazon.com/ec2/instance-types/) was used to install Ballerina.
@@ -58,18 +58,8 @@ The following is the summary of performance test results collected for the measu
 
 |  Scenario Name | Concurrent Users | Message Size (Bytes) | Back-end Service Delay (ms) | Error % | Throughput (Requests/sec) | Average Response Time (ms) | Standard Deviation of Response Time (ms) | 99th Percentile of Response Time (ms) | Ballerina GC Throughput (%) | Average of Ballerina Memory Footprint After Full GC (M) |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-|  Passthrough HTTP service | 100 | 50 | 0 | 0 | 20401.82 | 4.85 | 6.87 | 42 | 99.49 |  |
-|  Passthrough HTTP service | 100 | 1024 | 0 | 0 | 18928.92 | 5.23 | 7.04 | 43 | 99.53 |  |
-|  Passthrough HTTP service | 300 | 50 | 0 | 0 | 22102.41 | 13.52 | 11.23 | 67 | 98.75 |  |
-|  Passthrough HTTP service | 300 | 1024 | 0 | 0 | 20729.52 | 14.41 | 12.22 | 72 | 98.87 |  |
-|  Passthrough HTTP service | 1000 | 50 | 0 | 0 | 21094.88 | 47.33 | 24.59 | 141 | 96.41 |  |
-|  Passthrough HTTP service | 1000 | 1024 | 0 | 0 | 19628.95 | 50.85 | 25 | 146 | 96.59 |  |
-|  Passthrough HTTPS service | 100 | 50 | 0 | 0 | 19804.74 | 5 | 7.11 | 41 | 99.46 | 24.643 |
-|  Passthrough HTTPS service | 100 | 1024 | 0 | 0 | 16073.14 | 6.17 | 6.14 | 27 | 99.55 | 24.165 |
-|  Passthrough HTTPS service | 300 | 50 | 0 | 0 | 20821.53 | 14.34 | 12.19 | 70 | 98.81 | 24.63 |
-|  Passthrough HTTPS service | 300 | 1024 | 0 | 0 | 16563.87 | 18.04 | 11.53 | 61 | 99.03 | 25.014 |
-|  Passthrough HTTPS service | 1000 | 50 | 0 | 0 | 18307.58 | 54.54 | 27.88 | 156 | 96.81 | 25.841 |
-|  Passthrough HTTPS service | 1000 | 1024 | 0 | 0 | 15397.82 | 64.87 | 26.81 | 152 | 97.2 | 25.908 |
-|  JSON to XML transformation HTTP service | 100 | 50 | 0 | 0.06 | 135.05 | 740.6 | 1748.9 | 6175 | 13.89 | 1858.652 |
-|  JSON to XML transformation HTTP service | 100 | 1024 | 0 | 0 | 160.44 | 623.41 | 1274.33 | 5791 | 13.85 | 1849.554 |
-|  JSON to XML transformation HTTP service | 300 | 50 | 0 | 1.88 | 122.58 | 2392.12 | 4818.18 | 30079 | N/A | N/A |
+|  Passthrough HTTP service | 200 | 50 | 0 | 0 | 22217.88 | 8.21 | 8.29 | 47 | 99.21 |  |
+|  Passthrough HTTP2 (HTTPS) service | 200 | 50 | 0 | 0 | 15355.36 | 11.63 | 11.11 | 59 | 99.33 | 24.263 |
+|  Passthrough HTTPS service | 200 | 50 | 0 | 0 | 20207.05 | 9.02 | 8.8 | 50 | 99.22 | 24.729 |
+|  JSON to XML transformation HTTP service | 200 | 50 | 0 | 0 | 14493.91 | 12.61 | 11.68 | 67 | 98.65 | 23.771 |
+|  JSON to XML transformation HTTPS service | 200 | 50 | 0 | 0 | 13193.48 | 13.85 | 11.93 | 69 | 98.68 | 23.407 |
